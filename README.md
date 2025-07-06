@@ -1,14 +1,18 @@
-# garbage_classification
-AI project for classifying garbage into several types using image dataset
 # 🗑️ Garbage Classification using Deep Learning
 
-This project is developed as part of the **AICTE–Shell–Edunet Internship** under the domain of **Green Skills and AI**. It aims to classify different types of garbage images using transfer learning with **EfficientNetV2B0**.
+This project was developed as part of the **AICTE–Shell–Edunet Internship** under the domain of **Green Skills and Artificial Intelligence**. It aims to classify various types of waste using a **deep learning model** powered by **transfer learning** with the **EfficientNetV2B2** architecture. The system is designed to aid in **automated waste segregation**, contributing to smarter and more sustainable environmental practices.
+
+---
+
+## 📌 Project Overview
+
+Effective waste management starts with accurate segregation. This project uses **image classification** techniques to automatically identify and classify garbage into six key categories. The model is trained on a labeled dataset and deployed using a user-friendly **Gradio** interface.
 
 ---
 
 ## 📁 Dataset
 
-- The dataset used is a structured image dataset with the following classes:
+- The dataset contains labeled images organized into six categories:
   - `cardboard`
   - `glass`
   - `metal`
@@ -16,127 +20,144 @@ This project is developed as part of the **AICTE–Shell–Edunet Internship** u
   - `plastic`
   - `trash`
 
-- The dataset is stored in the folder: `garbage_image_dataset/`
-- Images are pre-categorized into respective folders (supervised learning setup).
+- Directory structure follows the supervised learning setup:
+garbage_image_dataset/
+├── cardboard/
+├── glass/
+├── metal/
+├── paper/
+├── plastic/
+└── trash/
 
----
+yaml
+Copy
+Edit
 
-## ✅ Week 1 Progress
+- Total Images: ~2500+  
+- Dataset Split:
+- 70% Training
+- 20% Validation
+- 10% Testing
 
-### 🔹 Tasks Completed:
-- Uploaded dataset to GitHub
-- Loaded dataset using TensorFlow `image_dataset_from_directory`
-- Printed class names
-- Implemented **data augmentation**
-- Used **EfficientNetV2B0** as base model
-- Created a custom classification model
-- Trained the model for 3 epochs with validation split
+📦 Dataset Source: [Trash Type Dataset - Kaggle](https://www.kaggle.com/datasets/farzadnekouei/trash-type-image-dataset)
 
 ---
 
 ## 🧠 Model Architecture
 
-- **EfficientNetV2B0** (pre-trained on ImageNet, frozen)
-- Data augmentation (flip, rotation)
-- Global Average Pooling
-- Dense layer with ReLU
-- Dropout layer
-- Output layer with Softmax activation
+The model leverages **EfficientNetV2B2**, a state-of-the-art CNN architecture, using **transfer learning**:
 
 ```python
-EfficientNetV2B0 (frozen)
+EfficientNetV2B2 (frozen layers)
+→ Data Augmentation (flip, rotation, zoom)
 → GlobalAveragePooling2D
 → Dense(64, activation='relu')
 → Dropout(0.3)
-→ Dense(6, activation='softmax')
-# 🗑️ Garbage Classification using EfficientNetV2B2
+→ Dense(6, activation='softmax')  # For 6 classes
+Key Features:
 
-A deep learning-based waste classification system using transfer learning with EfficientNetV2B2. This project classifies garbage images into 6 categories: cardboard, glass, metal, paper, plastic, and trash. Built and deployed as part of the AICTE–Shell–Edunet Internship.
+Pretrained on ImageNet
 
----
+Fine-tuned top layers
 
-## 📌 Project Overview
+Uses dropout to prevent overfitting
 
-Waste segregation is essential for a cleaner and sustainable environment. This project uses state-of-the-art image classification with `EfficientNetV2B2` to automatically detect garbage types from images, aiding smart waste management systems.
+Optimized using EarlyStopping and class weights
 
----
+🛠️ Tech Stack
+Category	Tools / Frameworks
+💻 Programming	Python
+📦 Framework	TensorFlow, Keras
+🧠 Model	EfficientNetV2B2
+📊 Visualization	Matplotlib, Seaborn
+🧪 Evaluation	Scikit-learn (Confusion Matrix, Accuracy)
+🌐 Deployment	Hugging Face Spaces + Gradio Interface
 
-## 🛠️ Tech Stack
+✅ Weekly Progress Summary
+Week 1: Data & Setup
+Loaded dataset using image_dataset_from_directory
 
-- 🧠 **Model**: EfficientNetV2B2 (Transfer Learning)
-- 🖼️ **Framework**: TensorFlow / Keras
-- 📊 **Evaluation**: Confusion Matrix, Accuracy, Classification Report
-- 📁 **Dataset**: Trash classification dataset from [Kaggle](https://www.kaggle.com/datasets/farzadnekouei/trash-type-image-dataset)
-- 🌐 **Deployment**: Hugging Face Spaces with Gradio Interface
-- 💻 **Tools**: Python, Jupyter Notebook, Matplotlib, Seaborn, Pandas
+Visualized class distribution
 
----
+Implemented data augmentation techniques
 
-## 📂 Dataset
+Initialized EfficientNetV2B0 for benchmarking
 
-- 6 Classes: `cardboard`, `glass`, `metal`, `paper`, `plastic`, `trash`
-- Total Images: ~2500+
-- Split: 70% Train, 20% Validation, 10% Test
-- Format: Directory-based image classification
+Week 2: Model Development & Training
+Switched to EfficientNetV2B2 for better performance
 
--
+Built and trained the model (3+ epochs)
 
-- ✅ Understood the problem statement and domain.
-- ✅ Installed required Python libraries (TensorFlow, OpenCV, etc.).
-- ✅ Explored and preprocessed dataset using `image_dataset_from_directory`.
-- ✅ Performed data augmentation (Random Flip, Rotation, Zoom, Contrast).
+Applied EarlyStopping, ModelCheckpoint, and class weights
 
-### 📅 Week 2: Model Development & Training
+Achieved validation accuracy of ~89%
 
-- ✅ Built CNN model using EfficientNetV2B2 with transfer learning.
-- ✅ Froze initial layers and fine-tuned last few layers.
-- ✅ Used `EarlyStopping`, `ModelCheckpoint`, and `class_weights` to boost accuracy.
-- ✅ Trained and validated model (Best Val Accuracy: **~89%**).
-- ✅ Saved the model in `.keras` format.
+Week 3: Evaluation & Deployment
+Evaluated model on test set (85%+ accuracy)
 
----
+Generated classification report and confusion matrix
 
-## 📈 Model Evaluation
+Deployed using Gradio on Hugging Face Spaces
 
-- ✅ Achieved 85%+ accuracy on the validation set.
-- ✅ Evaluated on unseen test data.
-- ✅ Generated classification report and confusion matrix using Scikit-learn.
-- ✅ Saved plots of accuracy and loss curves.
+📈 Model Evaluation
+The model was tested on unseen images, and performance was measured using:
 
----
+Validation Accuracy: ~89%
 
-## 🚀 Deployment
+Test Accuracy: ~85%
 
-- ✅ Deployed the final model on **Hugging Face Spaces** with Gradio.
-- ✅ Interface allows image upload or webcam input for real-time prediction.
+Evaluation Metrics: Precision, Recall, F1-Score
 
-🔗 **Live Demo on Hugging Face**: [Click Here to Try It](https://huggingface.co/spaces/your-username/garbage-classifier)  
-*(Replace link with your actual Hugging Face Space URL)*
+📸 Sample Prediction Output
+Below is a real prediction output from the deployed model. The image of compressed cardboard was uploaded to the interface. The model correctly predicted the class as cardboard with the highest confidence:
 
----
+🔍 Predicted Output Example:
 
-## 📸 Sample Predictions
 
-| Input Image | Predicted Class |
-|-------------|-----------------|
-| 🥤 Plastic Cup | `plastic` |
-| 📄 Crumpled Paper | `paper` |
-| 🥫 Tin Can | `metal` |
+Predicted Class: cardboard
+Confidence Scores:
 
----
+cardboard: 38%
 
-## 🤝 Acknowledgements
+paper: 16%
 
-- 📚 Internship Support: AICTE–Shell–Edunet Foundation
-- 💾 Dataset Source: [Trash Dataset - Kaggle](https://www.kaggle.com/datasets/farzadnekouei/trash-type-image-dataset)
-- 🙏 TensorFlow, Gradio, Hugging Face Teams
+trash: 14%
 
----
+glass: 14%
 
-## 📬 Contact
+metal: 10%
 
-Made with  by **Sreepathi Praveena**  
-  
+plastic: 9%
+
+🚀 Deployment
+The model was deployed using Gradio and hosted on Hugging Face Spaces.
+
+🔗 Live Demo: Click here to try it out
+(Replace the link above with your actual Hugging Face deployment URL)
+
+Features:
+
+Upload image or use webcam
+
+Real-time prediction and confidence visualization
+
+Supports all six garbage categories
+
+🧪 Sample Predictions Table
+Image	Predicted Class
+🥤 Plastic Cup	plastic
+📄 Crumpled Paper	paper
+🥫 Tin Can	metal
+📦 Flattened Boxes	cardboard
+
+🤝 Acknowledgements
+Internship Support: AICTE – Shell – Edunet Foundation
+
+Dataset Provider: Kaggle Trash Dataset
+
+Frameworks & Tools: TensorFlow, Gradio, Hugging Face
+
+📬 Contact
+Made with ❤ by Sreepathi Praveena
 📫 Email: praveena555p@gmail.com
-
 
