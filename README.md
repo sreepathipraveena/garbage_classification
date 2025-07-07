@@ -155,7 +155,7 @@ Internship Support: AICTE – Shell – Edunet Foundation
 
 Dataset Provider: Kaggle Trash Dataset
 
-Frameworks & Tools: TensorFlow, Gradio, Hugging Face
+Frameworks & Tools: TensorFlow, Gradio, Hugging Face:https://huggingface.co/spaces/praveena5jessy/garbage-classification
 
 📬 Contact
 Made with ❤ by Sreepathi Praveena
